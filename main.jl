@@ -23,19 +23,19 @@ A[1,1]=0
 n = (dot(A[1,:],C))/a
 x1 = m - n
 
-function(A::Matrix, B::Vector, C::Vector , max_iter = 100, E = 1e-3) #C é o vetor de zeros.
+function(A::Matrix, B::Vector, C::Vector , max_iter = 100, E = 1e-3) #C é o vetor do chute inicial ou de zeros.
     m,n = size(A)
     i = 1
     j = 1
     v = zeros(m)  #vetor que recebe os x1, x2, ..., xn.
     D = zeros(m,n)
-    for k = 1:max_iter
+    k = 1:max_iter
         while i <= m
-            a = A[i,j]
+            a = A[i,j]                #elementos da Diagonal Principal
             b = B[j]
-            m = (b/a)
-            A[i,j] = 0
-            n = (dot(A[i,:],C))/a
+            m = (b/a)     
+            A[i,j] = 0                #   
+            n = (dot(A[i,:],C))/a     #
             x = m - n
             push!(x,v)
             i = i + 1
