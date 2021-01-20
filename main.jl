@@ -34,28 +34,36 @@ function(A::Matrix, B::Vector, C::Vector , max_iter = 100, E = 1e-3) #C é o vet
             a = A[i,j]                #elementos da Diagonal Principal
             b = B[j]
             m = (b/a)     
-            A[i,j] = 0                #   
-            n = (dot(A[i,:],C))/a     #
+            A[i,j] = 0                
+            n = (dot(A[i,:],C))/a     
             x = m - n
             push!(x,v)
             i = i + 1
             j = j + 1
         end
         
-        for maiorx
-        
-        distancia = abs.(v - C)
+        # Acharemos o maior elemento do Vetor de v e a maior distância entre o chute inicial de x e os valores achados.
+        maiorx = abs(v[1])               
+        distancia = abs.(C - v)
         maiord = distancia[1] 
         
-        for p = 2:len(distancia)
-            if maior < distancia[p]
-                maior = distancia[p]
+        #Para o maior x
+        for h = 2:len(v)
+            if maiorx < abs(v[h])
+                maiorx = abs(v[h])
             end
         end
-
-        maior_distancia = maior
+        
+        # Para a maior distância
+        for p = 2:len(distancia)
+            if maiord < abs(distancia[p])
+                maiord = abs(distancia[p])
+            end
+        end
+        
+        erroR = maiord / maiorx
         C = v
-        #Criterio de Parada
+        
         
     end
     return v
