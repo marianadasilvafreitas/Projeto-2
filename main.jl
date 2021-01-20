@@ -23,26 +23,26 @@ A[1,1]=0
 n = (dot(A[1,:],C))/a
 x1 = m - n
 
-function(A::Matrix, B::Vector, C::Vector , max_iter = 100, E = 1e-3)
-m,n = size(A)
-i = 1
-j = 1
-v = zeros(m)
-D = zeros(m,n)
-for k = 1:max_iter
-    while i <= m
-        a = A[i,j]
-        b = B[j]
-        m = (b/a)
-        A[i,j] = 0
-        n = (dot(A[i,:],C))/a
-        x = m - n
-        push!(x,v)
-        i = i + 1
-        j = j + 1
+function(A::Matrix, B::Vector, C::Vector , max_iter = 100, E = 1e-3) #C é o vetor de zeros.
+    m,n = size(A)
+    i = 1
+    j = 1
+    v = zeros(m)  #vetor que recebe os x1, x2, ..., xn.
+    D = zeros(m,n)
+    for k = 1:max_iter
+        while i <= m
+            a = A[i,j]
+            b = B[j]
+            m = (b/a)
+            A[i,j] = 0
+            n = (dot(A[i,:],C))/a
+            x = m - n
+            push!(x,v)
+            i = i + 1
+            j = j + 1
+        end
+        C = v   
     end
-     C = v   
-end
-return v
-#reverse.(v)
+    return v
+    #reverse.(v)
 
