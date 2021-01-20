@@ -47,6 +47,8 @@ function Método_Jacobi(A::Matrix, B::Vector, C::Vector , max_iter = 100, E = 1e
     if p < 1
         #método converge
     end
+    
+   
     i = 1
     j = 1
     k = 1 #número de iterações
