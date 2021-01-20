@@ -61,10 +61,8 @@ function(A::Matrix, B::Vector, C::Vector , max_iter = 100, E = 1e-3) #C é o vet
             end
         end
         
-        erroR = maiord / maiorx
+        erroR = maiord / maiorx             #Erro Relativo
         C = v
-        
-        
     end
     return v
     #reverse.(v)
