@@ -62,7 +62,7 @@ function Método_Jacobi(A::Matrix, B::Vector, C::Vector , max_iter = 100, E = 1e
             A[i,j] = 0                
             n = (dot(A[i,:],C))/a     
             x = m - n
-            push!(x,v)
+            push!(v,x)
             i = i + 1
             j = j + 1
         end
