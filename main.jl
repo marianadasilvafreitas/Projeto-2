@@ -41,7 +41,19 @@ function(A::Matrix, B::Vector, C::Vector , max_iter = 100, E = 1e-3) #C é o vet
             i = i + 1
             j = j + 1
         end
-        distancia = max.(abs.(v - C))
+        
+        for maiorx
+        
+        distancia = abs.(v - C)
+        maiord = distancia[1] 
+        
+        for p = 2:len(distancia)
+            if maior < distancia[p]
+                maior = distancia[p]
+            end
+        end
+
+        maior_distancia = maior
         C = v
         #Criterio de Parada
         
