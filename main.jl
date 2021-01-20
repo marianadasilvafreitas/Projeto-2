@@ -29,7 +29,7 @@ function(A::Matrix, B::Vector, C::Vector , max_iter = 100, E = 1e-3) #C é o vet
     j = 1
     v = zeros(m)  #vetor que recebe os x1, x2, ..., xn.
     D = zeros(m,n)
-    k = 1:max_iter
+    while (k <= 1:max_iter) || (erroR < E)
         while i <= m
             a = A[i,j]                #elementos da Diagonal Principal
             b = B[j]
@@ -41,7 +41,7 @@ function(A::Matrix, B::Vector, C::Vector , max_iter = 100, E = 1e-3) #C é o vet
             i = i + 1
             j = j + 1
         end
-        C = v   
+        C = v
     end
     return v
     #reverse.(v)
