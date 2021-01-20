@@ -54,7 +54,7 @@ function Método_Jacobi(A::Matrix, B::Vector, C::Vector , max_iter = 100, E = 1e
     k = 1 #número de iterações
     v = zeros(m)  #vetor que recebe os x1, x2, ..., xn.
     D = zeros(0,0) #matriz que recebe os valores de v em cada iteração e coloca nas colunas.
-    while (k <= 1:max_iter) || (erroR < E)
+    while (k <= max_iter) || (erroR < E)
         while i <= m
             a = A[i,j]                #elementos da Diagonal Principal
             b = B[j]
