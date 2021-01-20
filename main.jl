@@ -69,7 +69,7 @@ function Método_Jacobi(A::Matrix, B::Vector, C::Vector , max_iter = 100, E = 1e
         
         # Acharemos o maior elemento do Vetor de v e a maior distância entre o chute inicial de x e os valores achados.
         maiorx = abs(v[1])               
-        distancia = abs.(C - v)
+        distancia = abs.(v - C)
         maiord = distancia[1] 
         
         #Para o maior x
