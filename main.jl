@@ -41,7 +41,10 @@ function(A::Matrix, B::Vector, C::Vector , max_iter = 100, E = 1e-3) #C é o vet
             i = i + 1
             j = j + 1
         end
+        distancia = max.(abs.(v - C))
         C = v
+        #Criterio de Parada
+        
     end
     return v
     #reverse.(v)
