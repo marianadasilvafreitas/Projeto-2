@@ -23,11 +23,10 @@ A[1,1]=0
 n = (dot(A[1,:],C))/a
 x1 = m - n
 
-function(A::Matrix, B::Vector, C = zeros(0), max_iter = 100, E = 1e-3)
+function(A::Matrix, B::Vector, C::Vector , max_iter = 100, E = 1e-3)
 m,n = size(A)
 i = 1
 j = 1
-C = zeros(m)
 v = zeros(m)
 D = zeros(m,n)
 for k = 1:max_iter
@@ -42,6 +41,7 @@ for k = 1:max_iter
         i = i + 1
         j = j + 1
     end
+     C = v   
 end
 return v
 #reverse.(v)
