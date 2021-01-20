@@ -73,14 +73,14 @@ function Método_Jacobi(A::Matrix, B::Vector, C::Vector , max_iter = 100, E = 1e
         maiord = distancia[1] 
         
         #Para o maior x
-        for h = 2:len(v)
+        for h = 2:length(v)
             if maiorx < abs(v[h])
                 maiorx = abs(v[h])
             end
         end
         
         # Para a maior distância
-        for l = 2:len(distancia)
+        for l = 2:length(distancia)
             if maiord < abs(distancia[l])
                 maiord = abs(distancia[l])
             end
