@@ -23,12 +23,35 @@ A[1,1]=0
 n = (dot(A[1,:],C))/a
 x1 = m - n
 
-function(A::Matrix, B::Vector, C::Vector , max_iter = 100, E = 1e-3) #C é o vetor do chute inicial ou de zeros.
+function Método_Jacobi(A::Matrix, B::Vector, C::Vector , max_iter = 100, E = 1e-3) #C é o vetor do chute inicial ou de zeros.
     m,n = size(A)
+    #convergência: critério das linhas - garante que o sistema converge para a solução independente do chute inicial
+    s = 0
+    p = 0
+    a = 1
+    b = 1
+    while a <= m
+        while b <= n
+            if b == a
+                r = abs(A[a,a])        # elemento da diagonal
+            else
+                s = s + abs(A[a,b])     #soma de todos os elementos da linha exceto o elemento da diagonal 
+            end 
+            b = b + 1
+        end
+        if (s/r) >= p          #encontrar o valor máximo de p
+            p = s/r
+        end
+        a = a + 1
+    end
+    if p < 1
+        #método converge
+    end
     i = 1
     j = 1
+    k = 1 #número de iterações
     v = zeros(m)  #vetor que recebe os x1, x2, ..., xn.
-    D = zeros(m,n)
+    D = zeros(0,0) #matriz que recebe os valores de v em cada iteração e coloca nas colunas.
     while (k <= 1:max_iter) || (erroR < E)
         while i <= m
             a = A[i,j]                #elementos da Diagonal Principal
@@ -60,10 +83,10 @@ function(A::Matrix, B::Vector, C::Vector , max_iter = 100, E = 1e-3) #C é o vet
                 maiord = abs(distancia[p])
             end
         end
-        
+        D[:,k] = v
         erroR = maiord / maiorx             #Erro Relativo
         C = v
+        k = k + 1
     end
     return v
-    #reverse.(v)
 
